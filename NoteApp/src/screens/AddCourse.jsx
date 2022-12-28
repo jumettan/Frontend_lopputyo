@@ -1,12 +1,20 @@
 import React from 'react'
-import FetchData from '../components/FetchData'
+import ListCourse from '../components/ListCourse'
 
 
 
-const AddCourse = () => {
+
+
+
+
+
+const AddCourse = ({courses,addNewCourse}) => {
+    if (courses.length === 0) {
+        return <p>No courses.</p>;
+      }
   return (
     <div>
-        <FetchData/>
+        <ListCourse courses = {courses} addNewCourse={addNewCourse}/>
     </div>
   )
 }

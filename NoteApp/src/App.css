@@ -71,57 +71,22 @@ width: 150px;
 border-style: solid;
 text-align: left;
 }
-.divNotes{
-  float: left;
+.ListNotesCont{
+  margin-top: 20px;
+  padding-top: 20px;
 }
-.AddNotes{
-  float: left;
+.noteText{
+  width: fit-content;
   font-size: 20px;
-  padding-left: 30px;
 }
-.Course{
-  float: left;
-  width: 50%;
-  font-size: 20px;
+.noteCont{
+  border-style: solid;
+  margin-left: 75px;
+  width: 600px;
+  text-align: center;
   
 }
-.CurrentNotes{
-  border-style: solid;
-  width: 100%;
-  height: 250px;
-  float: left;
-  margin-left: 25px;
-  position: relative;
-}
-.btnDiv{
-  margin-top: 15px;
-}
-.btnS{
-  width: 25%;
-  float: left;
-  margin-left: 25px;
-  border-color: black;
-}
-.btnB{
-  border-color: black;
-  width: 25%;
-  float: left;
-  margin-left: 50px;
-}
-#CourseSelect{
-  margin-top: 20px;
-  width: 50%;
-  height: 40%;
-  padding-right: 20px;
-}
-.SubjectsList{
-  position: relative;
-  display: right;
-  margin-top: 10px;
-}
-.addCoursesCont{
-  float: left;
-  width: 300px;
-  height: auto;
-
+.noteInfo{
+  width: fit-content;
+  
 }

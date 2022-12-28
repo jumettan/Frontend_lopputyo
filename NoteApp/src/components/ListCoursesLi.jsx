@@ -1,18 +1,22 @@
-import { useState } from "react";
 
-const ListCoursesLi = ({courses}) => {
-    const [selectedCourse, setSelectedCourse] = useState("");
-    return (
-        <select value={selectedCourse} onChange={(e) => setSelectedCourse(e.target.value)}>
-        {courses.map((course, i) => {
-          return (
-            <option key={i} value={course.id}>
-              {course.name}
-            </option>
-          );
-        })}
-      </select>
-    );
+const ListCoursesLi = ({ courses, onFilterChange }) => {
+  const handleChange = (event) => {
+    const selectedCourse = {
+      id: event.target.value,
+      name: event.target.options[event.target.selectedIndex].text
+    };
+    onFilterChange(selectedCourse);
   };
-  
-  export default ListCoursesLi;
+
+  return (
+    <select onChange={handleChange}>
+      <option value="all">All notes</option>
+      {courses.map(course => (
+        <option key={course.id} value={course.id}>
+          {course.name}
+        </option>
+      ))}
+    </select>
+  );
+};
+export default ListCoursesLi;

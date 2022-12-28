@@ -1,13 +1,11 @@
 import React from 'react'
+import ListCoursesLi from '../components/ListCoursesLi'
 
 const AddNewNotesForCourse = (courses) => {
+    console.log(courses)
   return (
     <div>
-        <ListCoursesLi
-              
-              courses={courses}
-
-            />
+        
     </div>
   )
 }
