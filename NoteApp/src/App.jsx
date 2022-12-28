@@ -14,6 +14,7 @@ function App() {
 
 
   useEffect(() => {
+
     const fetchCourse= async () => {
       const data = await fetch(
         'https://luentomuistiinpano-api.deta.dev/courses/'
@@ -22,12 +23,16 @@ function App() {
       setCourses(json);
     };
     fetchCourse();
+    const savedCourses = localStorage.getItem('courses');
+      if (savedCourses) {
+    setCourses(JSON.parse(savedCourses));
+  }
   }, []);
-    console.log(courses)
-    const addNewCourse = (course) => {
-        setCourses([...courses, course]);
+    
+  const addNewCourse = (course) => {
+    setCourses(courses => [...courses, course]);
+    localStorage.setItem('courses', JSON.stringify([...courses, course]));
   };
-
   const openInNewTab = url => {
     window.open(url,'_self');
     if (newWindow) newWindow.opener = null
@@ -45,11 +50,19 @@ function App() {
       setNotes(json);
     };
     fetchNotes();
+    const savedNotes = localStorage.getItem('notes');
+    if (savedNotes) {
+    setNotes(JSON.parse(savedNotes));
+  }
   }, []);
-    console.log(notes)
+    
     const addNewNotes = (note) => {
         setNotes([...notes, note]);
+        localStorage.setItem('notes', JSON.stringify([...notes, note]));
   };
+
+  console.log("hello", courses)
+  
 
 
 

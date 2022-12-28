@@ -2,15 +2,16 @@ import React from 'react'
 
 import { useState } from "react";
 
-const SaveCourse = ({addNewCourse}) => {
+const SaveCourse = ({courses,addNewCourse}) => {
     const [name, setName] = useState("");
   
-  
+    
     const handleSave = (e) => {
       if (name === "") {
         return;
       }
-      let NewCourse = { id: 5, name : name };
+      let NewCourse = 
+      { id: courses.length, name : name };
 
       addNewCourse(NewCourse);
       setName("");

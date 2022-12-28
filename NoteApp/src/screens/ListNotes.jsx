@@ -4,16 +4,7 @@ import ListCoursesLi from '../components/ListCoursesLi';
 const ListNotes = ({ notes, courses }) => {
   const [filteredNotes, setFilteredNotes] = useState(notes);
 
-  /*notes.forEach(note => {
-    console.log(note.course);
-  });
-  courses.forEach(course => {
-    console.log(`ID: ${course.id}, Name: ${course.name}`);
-  });
-  notes.forEach(({ course: { id, name } }) => {
-    console.log(id);
-    console.log(name);
-  });*/
+ 
   const handleFilterChange = (selectedCourse) => {
     let filteredNotes;
     console.log(selectedCourse)
@@ -29,6 +20,10 @@ const ListNotes = ({ notes, courses }) => {
     }
     setFilteredNotes(filteredNotes);
     console.log(filteredNotes)
+    if (filteredNotes.length === 0) {
+      // There are no notes for the selected course
+      console.log("this course does not have any notes yet");
+    }
   };
   
 
@@ -37,17 +32,20 @@ const ListNotes = ({ notes, courses }) => {
       <div>ListNotes</div>
       Course:
       <ListCoursesLi courses={courses} onFilterChange={handleFilterChange} />
-
-      {filteredNotes.map(note => (
-        <div className="ListNotesCont" key={note.id}>
-          <div className="noteCont">
-            <div className="noteInfo">
-              {note.timestamp} {note.course.name} (id {note.course.id})
+      {filteredNotes.length === 0 ? (
+        <div className='noNotes'>this course does not have notes yet</div>
+      ) : (
+        filteredNotes.map(note => (
+          <div className="ListNotesCont" key={note.id}>
+            <div className="noteCont">
+              <div className="noteInfo">
+                {note.timestamp} {note.course.name} (id {note.course.id})
+              </div>
+              <div className="noteText">{note.text}</div>
             </div>
-            <div className="noteText">{note.text}</div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };

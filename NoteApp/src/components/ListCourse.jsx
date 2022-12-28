@@ -1,10 +1,10 @@
-import SaveCourse from "./SavaCourse";
+import SaveCourse from "./SaveCourse";
 
 
 const ListCourse = ({ courses, addNewCourse}) => {
   return (
     <div>
-      <SaveCourse addNewCourse={addNewCourse} />
+      <SaveCourse courses = {courses} addNewCourse={addNewCourse} />
     </div>
   );
 };
