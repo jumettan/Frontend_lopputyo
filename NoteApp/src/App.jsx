@@ -44,6 +44,7 @@ function App() {
     // valmis pusku localsotrageen mitä jouduin käyttämään silloin kun käytin browserRouteria Router,route,routes
     //sama homma notes ja courses
     //localStorage.setItem('courses', JSON.stringify([...courses, course]));
+    // tämän avulla säilyy lisäykset muistissa vaikka sivun refreshaa.
     
   };
 

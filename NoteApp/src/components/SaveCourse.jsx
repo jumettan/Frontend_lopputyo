@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const SaveCourse = ({courses,addNewCourse}) => {
     const [name, setName] = useState("");
-  
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     
     const handleSave = (e) => {
       if (name === "") {
@@ -14,8 +14,12 @@ const SaveCourse = ({courses,addNewCourse}) => {
       { id: courses.length, name : name };
 
       addNewCourse(NewCourse);
-      setName("");
+      setName(name);
       console.log(NewCourse)
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 3000);
     };
     if (courses.length === 0) {
       return <div>
@@ -41,6 +45,11 @@ const SaveCourse = ({courses,addNewCourse}) => {
           onChange={(e) => setName(e.target.value)}
         />
         <button onClick={handleSave}>Add course</button>
+        {showSuccessMessage && (
+        <p>
+          Course added with id "{courses.length -1}" and name "{name}" succesfully!
+        </p>
+      )}
       </div>
     );
   };
