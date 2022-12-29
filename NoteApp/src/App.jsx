@@ -14,19 +14,22 @@ function App() {
 
 
   useEffect(() => {
-
-    const fetchCourse= async () => {
+    const fetchCourse = async () => {
       const data = await fetch(
         'https://luentomuistiinpano-api.deta.dev/courses/'
       );
       let json = await data.json();
       setCourses(json);
+      localStorage.setItem('courses', JSON.stringify(json));
     };
-    fetchCourse();
+  
     const savedCourses = localStorage.getItem('courses');
-      if (savedCourses) {
-    setCourses(JSON.parse(savedCourses));
-  }
+    if (savedCourses) {
+      setCourses(JSON.parse(savedCourses));
+      
+    } else {
+      fetchCourse();
+    }
   }, []);
     
   const addNewCourse = (course) => {
@@ -78,7 +81,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/AddCourse' element={<AddCourse courses = {courses} addNewCourse={addNewCourse}/>}/>
-        <Route path='/AddNotes' element={<AddNewNotesForCourse/>}/>
+        <Route path='/AddNotes' element={<AddNewNotesForCourse courses ={courses} addNewNotes ={addNewNotes} notes = {notes}/>}/>
         <Route path='/ListNotes' element={<ListNotes notes = {notes} courses = {courses}/>}/>
       </Routes>
     </Router>
