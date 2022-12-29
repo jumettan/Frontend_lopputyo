@@ -5,4 +5,4 @@ tämän jälkeen annetaan komento npm run dev ja ohjelma antaa sinulle http osoi
 Ohjelma sisältää myös localStoragen, jos haluaa muistiinpanojen säilyvän tallessa refresh page jälkeen. ei tarvitse muutakuin ottaa kommentit pois. (toivottavasti)
 
 
-HUOM! OHJELMA EI TOIMI JOS KOMENNOT ANNETAAN \Frontend_lopputyo KANSIOSSA!!!
+HUOM! OHJELMA EI TOIMI JOS KOMENNOT ANNETAAN \Frontend_lopputyo KANSIOSSA!!! TÄYTYY OLLA \Frontend_lopputyo\NoteApp
