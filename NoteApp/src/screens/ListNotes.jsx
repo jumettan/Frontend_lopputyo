@@ -39,7 +39,7 @@ const ListNotes = ({ notes, courses, setNotes }) => {
       Course:
       <ListCoursesLi courses={courses} onFilterChange={handleFilterChange} />
       {filteredNotes.length === 0 ? (
-        <div className='noNotes'>You don't have any notes here yet. <br /> <br /> Go create some in the Create notes for class tab!</div>
+        <div className='noNotes'>Ei muistiinpanoja!</div>
       ) : (
       <div className='ListedNotesCont'>
         

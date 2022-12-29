@@ -30,13 +30,14 @@
   list-style: none;
   color: black;
 }
-.homeBTN{
-  
+.backBtn{
+    position: relative;
     font-size: 25px;
     border-style: solid;
     background-color: white;
-    
-    
+    color: black;
+    margin-left: 600px;
+    margin-top: 100px;
 }
 .homeUL{
   padding: 0px;

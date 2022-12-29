@@ -5,22 +5,28 @@ import { useState } from "react";
 const SaveCourse = ({courses,addNewCourse}) => {
     const [name, setName] = useState("");
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [courseName, setCourseName] = useState("")
     
     const handleSave = (e) => {
       if (name === "") {
         return;
       }
-      let NewCourse = 
+      let newCourse = 
       { id: courses.length, name : name };
-
-      addNewCourse(NewCourse);
+      setCourseName(newCourse.name)
+      addNewCourse(newCourse);
       setName(name);
-      console.log(NewCourse)
+      console.log(newCourse)
       setShowSuccessMessage(true);
+      setName("")
       setTimeout(() => {
-      setShowSuccessMessage(false);
+      
+      setShowSuccessMessage(false); 
+      
     }, 3000);
+    
     };
+    
     if (courses.length === 0) {
       return <div>
       <input
@@ -47,11 +53,12 @@ const SaveCourse = ({courses,addNewCourse}) => {
         <button onClick={handleSave}>Add course</button>
         {showSuccessMessage && (
         <p>
-          Course added with id "{courses.length -1}" and name "{name}" succesfully!
+          Course "{courseName}" added with id( "{courses.length -1}")
         </p>
       )}
       </div>
     );
+    
   };
 
 export default SaveCourse
