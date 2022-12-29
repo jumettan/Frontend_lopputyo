@@ -2,42 +2,63 @@ import React, { useState } from 'react';
 import SelectNoteCourse from '../components/SelectNoteCourse';
 
 const AddNewNotesForCourse = ({ courses, addNewNotes, notes }) => {
-
+  const [newNotes, setNewNotes] = useState([])
   const [noteText, setNoteText] = useState('');
+  const [selectedCourse, setSelectedCourse] = useState('')
+  const [isDisabled, setIsDisabled] = useState(false);
 
-  const handleAddNote = (selectedCourse) => {
+  const handleAddNote = () => {
     console.log(selectedCourse)
-    
+  
     const newNote = {
       id: notes.length,
       text: noteText,
-      course: {
+      course: selectedCourse ? {
         id: selectedCourse.id,
         name: selectedCourse.name
-      },
+      } : null,
       timestamp: new Date().toISOString()
     };
     addNewNotes(newNote);
+    addNewNotesNew(newNote)
     console.log(notes)
+    setIsDisabled(true);
+    console.log(newNotes)
   };
+  const addNewNotesNew = (note) => {
+    setNewNotes(newNotes => [...newNotes, note]);};
+  
 
   return (
-    <div>
+    <div className='add-note-container'>
+      <div className="add-note-select" >
       Course:
-      <SelectNoteCourse courses={courses} onFilterChange={handleAddNote}/>
-      <input
+      <SelectNoteCourse courses={courses} onFilterChange={setSelectedCourse} disabled={isDisabled}/>
+      </div>
+      <textarea className='add-note-input'
         id="note-text"
         type="text"
         value={noteText}
         onChange={(event) => setNoteText(event.target.value)}
       />
       
-      <button onClick={handleAddNote}>Add Note</button>
-      
-      
+      <button className='add-note-button' onClick={handleAddNote}>Add Note</button>
+      <div className='newNotesDisplay'>
+        {newNotes.map(note => (
+          <div className="ListNotesCont" key={note.id}>
+          <div className="noteCont">
+            <div className="noteInfo">
+              {note.timestamp} {note.course.name} (id {note.course.id})
+            </div>
+            <div className="noteText">{note.text}
+          </div>
+          </div>
+          
+      </div>
+      ))}
     </div>
-    
-  );
+  </div>
+);
 };
 
 export default AddNewNotesForCourse;

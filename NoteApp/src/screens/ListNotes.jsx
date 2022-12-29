@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import ListCoursesLi from '../components/ListCoursesLi';
+import { FaTrash } from "react-icons/fa"
 
-const ListNotes = ({ notes, courses }) => {
+const ListNotes = ({ notes, courses, setNotes }) => {
   const [filteredNotes, setFilteredNotes] = useState(notes);
 
  
@@ -25,6 +26,11 @@ const ListNotes = ({ notes, courses }) => {
       console.log("this course does not have any notes yet");
     }
   };
+  const handleDelete = (id) => {
+    const updatedNotes = notes.filter(note => note.id !== id);
+    setNotes(updatedNotes);
+    setFilteredNotes(updatedNotes);
+  }
   
 
   return (
@@ -33,18 +39,25 @@ const ListNotes = ({ notes, courses }) => {
       Course:
       <ListCoursesLi courses={courses} onFilterChange={handleFilterChange} />
       {filteredNotes.length === 0 ? (
-        <div className='noNotes'>this course does not have notes yet</div>
+        <div className='noNotes'>You don't have any notes here yet. <br /> <br /> Go create some in the Create notes for class tab!</div>
       ) : (
-        filteredNotes.map(note => (
+      <div className='ListedNotesCont'>
+        
+        {filteredNotes.map(note => (
+        
           <div className="ListNotesCont" key={note.id}>
             <div className="noteCont">
               <div className="noteInfo">
                 {note.timestamp} {note.course.name} (id {note.course.id})
+                <button className='deleteBtn' onClick={() => handleDelete(note.id)}><FaTrash/></button>
               </div>
-              <div className="noteText">{note.text}</div>
+              <div className="noteText">{note.text}
             </div>
-          </div>
-        ))
+            </div>
+            
+        </div>
+        ))}
+      </div>
       )}
     </div>
   );
