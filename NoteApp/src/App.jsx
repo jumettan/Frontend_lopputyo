@@ -26,7 +26,8 @@ function App() {
       localStorage.setItem('courses', JSON.stringify(json));
       
     };
-  
+    //localStorage.clear()
+    // tällä saa tyhjennettyä localStoragen  ottaa // pois edestä.
     const savedCourses = localStorage.getItem('courses');
     if (savedCourses) {
       setCourses(JSON.parse(savedCourses));
@@ -43,33 +44,31 @@ function App() {
     // valmis pusku localsotrageen mitä jouduin käyttämään silloin kun käytin browserRouteria Router,route,routes
     //sama homma notes ja courses
     //localStorage.setItem('courses', JSON.stringify([...courses, course]));
+    
   };
 
   const [notes, setNotes] = useState([]);
 
-
-  useEffect(() => {
-    const fetchNotes= async () => {
-      const dataN = await fetch(
-        'https://luentomuistiinpano-api.deta.dev/notes/'
-      );
-      let json = await dataN.json();
-      setNotes(json);
-    };
-    fetchNotes();
-    const savedNotes = localStorage.getItem('notes');
-    if (savedNotes) {
-      setNotes(JSON.parse(savedNotes));
-      
-    } else {
-      fetchNotes();
-    }
-  }, []);
-    
-  const addNewNotes = (note) => {
-    setNotes(notes => [...notes, note]);
-    //localStorage.setItem('notes', JSON.stringify([...notes, note]));
+useEffect(() => {
+  const fetchNotes = async () => {
+    const dataN = await fetch('https://luentomuistiinpano-api.deta.dev/notes/');
+    let json = await dataN.json();
+    setNotes(json);
+    localStorage.setItem('notes', JSON.stringify(json));
   };
+  //localStorage.clear()
+  const savedNotes = localStorage.getItem('notes');
+  if (savedNotes) {
+    setNotes(JSON.parse(savedNotes));
+  } else {
+    fetchNotes();
+  }
+}, []);
+
+const addNewNotes = (note) => {
+  setNotes(notes => [...notes, note]);
+  //localStorage.setItem('notes', JSON.stringify([...notes, note]));
+};
 
   console.log("hello", courses)
   
